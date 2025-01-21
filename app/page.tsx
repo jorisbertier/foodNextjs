@@ -50,6 +50,7 @@ export default function Home() {
 console.log('test')
 console.log(foods)
   return (
+    <div className="w-full justify-center flex h-screen items-center">
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button
@@ -93,6 +94,7 @@ console.log(foods)
         </Command>
       </PopoverContent>
     </Popover>
+    </div>
   )
 
 }
