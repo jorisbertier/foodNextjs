@@ -19,10 +19,13 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { IFood, IFoodReduced } from "./interface"
+import { useRouter } from "next/navigation"
 
 export default function Home() {
   const [open, setOpen] = React.useState(false)
   const [value, setValue] = React.useState("")
+
+  const router = useRouter()
 
   const [foods, setFoods] = React.useState<IFoodReduced[]>([])
 
@@ -31,7 +34,7 @@ export default function Home() {
       const response = await fetch('/api/food/all')
       const data = await response.json()
       const dataReduce: IFoodReduced[] = data.map((item: IFood) => ({
-        value: item.name.replace(/ /g,"-"),
+        value: item.name.replace(/ /g,"-").toLowerCase(),
         label: item.name,
       }))
       setFoods(dataReduce)
@@ -47,7 +50,14 @@ export default function Home() {
     }
     initialFetch()
   }, [])
-  
+
+  React.useEffect(() => {
+    if(value.length > 0) {
+      router.push(`/food/${value}`)
+
+    }
+    }, [value])
+
 console.log(value)
   return (
     <div className="w-full justify-center flex h-screen -mt-40 items-center">
