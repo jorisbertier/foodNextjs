@@ -47,10 +47,10 @@ export default function Home() {
     }
     initialFetch()
   }, [])
-console.log('test')
-console.log(foods)
+  
+console.log(value)
   return (
-    <div className="w-full justify-center flex h-screen items-center">
+    <div className="w-full justify-center flex h-screen -mt-40 items-center">
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button
@@ -61,13 +61,13 @@ console.log(foods)
         >
           {value
             ? foods.find((framework) => framework.value === value)?.label
-            : "Select framework..."}
+            : "Select a food..."}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
         <Command>
-          <CommandInput placeholder="Search framework..." />
+          <CommandInput placeholder="Search food..." />
           <CommandList>
             <CommandEmpty>No framework found.</CommandEmpty>
             <CommandGroup>
